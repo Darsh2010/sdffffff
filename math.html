@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>Welcome Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet"  type="text/css" href="style.css">
+ </head>
+<body id="math">
+   <span> <h2 id="h1">Player 1 score:</h1>
+</span>
+<span>
+    <h3 id="h2"></h2>
+</span>
+   <span> <h3 id="h3">Player 2 score:</h3>
+</span><span>
+    <h3 id="h4"></h4>
+</span>
+    <br>    <br>    <br>    <br>    <br>    <br>    <br>
+    <input type="number " id="n1" placeholder="insert first no."></input>
+    <input type="number" id="n2" placeholder="insert second no."></input>
+    <br><button id="button" class="byn btn-info" onclick="send()">send</button>
+  <div id="out"></div>
+  <h6>Question Turn</h6><h6  id="question_turn">  </h6>    <script>
+        player_1_name=localStorage.getItem("p1n");
+        player_2_name=localStorage.getItem("p2n");
+        player_1_score=0;
+        player_2_score=0;
+        document.getElementById("h1").innerHTML= player_1_name+ " score:";
+        document.getElementById("h3").innerHTML= player_2_name + " Score:";
+        document.getElementById("h2").innerHTML= player_1_score;
+        document.getElementById("h4").innerHTML= player_2_score;
+        document.getElementById("question_turn").innerHTML=player_1_name;
+        function send(){
+            n1=document.getElementById("n1").value;
+            n2=document.getElementById("n2").value;
+            actual_answer=parseInt(n1)*parseInt(n2);
+quest="<h4>"+n1+"x"+n2+"</h4>";
+input_box="<br>Answer:<input type='number'  id='input_check_box' onclick='check()'>";
+check_button ="<br><br><button class='btn btn-info' onclick='check()'>check</button>"
+row=quest+input_box+check_button;
+document.getElementById('out').innerHTML=row;
+}
+        function check(){
+        player_answer=document.getElementById("input_check_box").value;
+        player_turn=document.getElementById("question_turn").value;
+        if(question_turn=player_1_name){
+            if(player_answer=actual_answer){
+player_2_score=player_2_score+1;
+question_turn=player_2_name;
+document.getElementById("h4").innerHTML=player_2_score;
+document.getElementById("question_turn").innerHTML=player_2_name;
+            }
+        }
+        if(question_turn=player_2_name){
+            if(player_answer=actual_answer){
+player_1_score=player_1_score+1;
+question_turn=player_1_name;
+document.getElementById("h2").innerHTML=player_1_score;
+document.getElementById("question_turn").innerHTML=player_1_name;
+            }
+        }
+        }
+    </script>
+</body></html>
